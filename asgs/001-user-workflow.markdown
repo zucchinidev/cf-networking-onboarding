@@ -16,8 +16,8 @@ sidebar:
 ## What
 Application Security Groups (ASGs) are a collection of egress (outbound) rules
 that specify the protocols, ports, and IP ranges where applications can send
-traffic. ASGs define rules that *allow* traffic. They are a whitelist, not a
-blacklist.  Diego Cells use these ASGs to filter and log outbound network
+traffic. ASGs define rules that *allow* traffic. They are an allow-list, not a
+block-list. Diego Cells use these ASGs to filter and log outbound network
 traffic.
 
 When applications are staging, there need to be ASGs permissive enough to allow
@@ -56,15 +56,22 @@ The public_network ASG allows egress traffic to access the entire public
 internet, via every protocol.
 
 🤔 **Using Running ASGs**
+
 Because the wide open `public_networks` security group is bound to all running
 and staging contains for the entire foundation, your app should be able to
 connect to any website on the internet. Let's test this.
 1. Ssh onto appA (`cf ssh --help`)
 1. Curl www.neopets.com. Success!
 1. Unbind the public_networks **running** security-group.
-1. When you bind/unbind ASGs you will see this helpful tip `TIP: Changes will not apply to existing running applications until they are restarted.` So restart your app!
+1. When you bind/unbind ASGs you will see this tip `TIP: If Dynamic ASG's are
+   enabled, changes will automatically apply for running and staging
+   applications. Otherwise, changes will require an app restart (for running)
+   or restage (for staging) to apply to existing applications.` By default all
+   environments are now using Dynamic ASGs, so there is no need to restart your
+   app.
 1. Ssh onto appA again
-1. Curl www.neopets.com.
+1. Continually curl neopets with: `watch curl neopets.com`. Wait. It should
+   eventually fail. Time how long it takes. 1-2 minutes is most likely.
  * ❓ What happened? Why did it fail?
 
 🤔 **Using Staging ASGs**

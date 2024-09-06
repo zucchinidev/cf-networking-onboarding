@@ -159,10 +159,14 @@ sidebar-asgs:
         url: /asgs/intro
       - title: "User Workflow"
         url: /asgs/user-workflow
+      - title: "Storing and Syncing ASGs"
+        url: /asgs/storing-and-syncing-ASGs
       - title: "Iptables Primer"
         url: /asgs/iptables-primer
       - title: "ASGs and Iptables"
         url: /asgs/asgs-and-iptables
+      - title: "Speed Up ASG Syncing"
+        url: /asgs/speed-up-asg-syncing
       - title: "Wrap Up"
         url: /asgs/wrap-up
 
