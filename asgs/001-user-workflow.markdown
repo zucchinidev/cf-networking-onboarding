@@ -16,8 +16,8 @@ sidebar:
 ## What
 Application Security Groups (ASGs) are a collection of egress (outbound) rules
 that specify the protocols, ports, and IP ranges where applications can send
-traffic. ASGs define rules that *allow* traffic. They are a whitelist, not a
-blacklist.  Diego Cells use these ASGs to filter and log outbound network
+traffic. ASGs define rules that *allow* traffic. They are an allow-list, not a
+block-list. Diego Cells use these ASGs to filter and log outbound network
 traffic.
 
 When applications are staging, there need to be ASGs permissive enough to allow
