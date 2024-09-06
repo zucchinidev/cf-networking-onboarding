@@ -62,7 +62,13 @@ connect to any website on the internet. Let's test this.
 1. Ssh onto appA (`cf ssh --help`)
 1. Curl www.neopets.com. Success!
 1. Unbind the public_networks **running** security-group.
-1. When you bind/unbind ASGs you will see this helpful tip `TIP: Changes will not apply to existing running applications until they are restarted.` So restart your app!
+1. When you bind/unbind ASGs you will see this tip `TIP: If Dynamic ASG's are
+   enabled, changes will automatically apply for running and staging
+   applications. Otherwise, changes will require an app restart (for running)
+   or restage (for staging) to apply to existing applications.` By default all
+   environments are now using Dynamic ASGs, so there is no need to restart your
+   app.
+1. Wait a minute or two for ASGs to update...
 1. Ssh onto appA again
 1. Curl www.neopets.com.
  * ❓ What happened? Why did it fail?
