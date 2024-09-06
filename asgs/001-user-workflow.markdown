@@ -56,6 +56,7 @@ The public_network ASG allows egress traffic to access the entire public
 internet, via every protocol.
 
 🤔 **Using Running ASGs**
+
 Because the wide open `public_networks` security group is bound to all running
 and staging contains for the entire foundation, your app should be able to
 connect to any website on the internet. Let's test this.
@@ -68,9 +69,9 @@ connect to any website on the internet. Let's test this.
    or restage (for staging) to apply to existing applications.` By default all
    environments are now using Dynamic ASGs, so there is no need to restart your
    app.
-1. Wait a minute or two for ASGs to update...
 1. Ssh onto appA again
-1. Curl www.neopets.com.
+1. Continually curl neopets with: `watch curl neopets.com`. Wait. It should
+   eventually fail. Time how long it takes. 1-2 minutes is most likely.
  * ❓ What happened? Why did it fail?
 
 🤔 **Using Staging ASGs**

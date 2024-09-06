@@ -13,19 +13,12 @@ sidebar:
 - You have one
   [proxy](https://github.com/cloudfoundry/cf-networking-release/tree/develop/src/example-apps/proxy)
   app pushed and named appA (the fewer apps you have deployed the better)
-- You have the public_networks security group bound to all running and staging
-  containers
+- You have your own security group created and bound to all running apps allowing access to "1.2.3.4"
 
 ## What
-In the first story you learned what ASGs *are*, but how are they implemented
-under-the-hood?  (Hint: iptables)
-
-Information about ASGs are stored in CAPI's database. When a container create
-is triggered (for example by a cf push), CAPI passes ASG information along to
-Diego (container scheduler). Diego then passes the ASG information along to
-Garden (the container creator), which passes it along to the container
-networking components. After this long journey, the container networking
-components turn this ASG information into iptables rules on the Diego Cells.
+In the previous story you saw how ASGs are create in CAPI and synced to the
+Policy Server DB, but how are they actually enforced under-the-hood?  (Hint:
+iptables)
 
 Iptables rules are a series of rules that network packets match against to
 decide whether that traffic is allowed or not. This is one way firewalls can be
@@ -35,17 +28,16 @@ something external to the CF foundation (usually the internet).
 The iptables man page is extremely helpful as a reference! Consult it if you
 have any questions throughout this story.
 
-Let's investigate what iptables rules are created for the public_networks ASG.
+Let's investigate what iptables rules are created for the ASG you created.
 
 ## How
 
-📝 **Find the iptables rule for the public_networks ASG**
-1. Look at the ASG public_networks
+📝 **Find the iptables rule for your ASG**
+1. Remind yourself which IPs are allowed from your ASG
    ```bash
-   cf security-group public_networks
+   cf security-group MY_ASG_NAME
    ```
-  Note which IP ranges are specified. Save these rules somewhere accessible for
-  future reference.
+  Save these rules somewhere accessible for future reference.
 
 1. Ssh onto the Diego Cell where appA is running and become root.
    ```bash
@@ -71,25 +63,26 @@ Let's investigate what iptables rules are created for the public_networks ASG.
    Read it line by line.
    I promise it will start to become comprehensible.
 
-   Remember those IP ranges that are in the public_networks security group?  If
-   you search for one of them (ie. `0.0.0.0-9.255.255.255`) you should be able
-   to find an iptables rule that looks something like this:
+   Remember the IP that is in your security group?  If you search for it you
+   should be able to find an iptables rule that looks something like this:
 
    ```
    # If you have logging enabled
-   -A netout--772fbbd5-862a-4b3d-7 -m iprange --dst-range 0.0.0.0-9.255.255.255 -g netout--772fbbd5-862a-4--log
+   -A asg-fd7a -m iprange --dst-range 1.2.3.4-1.2.3.4 -g asg-fd7a-log
+
    # If you don't have logging enabled
-   -A netout--772fbbd5-862a-4b3d-7 -m iprange --dst-range 0.0.0.0-9.255.255.255 -j ACCEPT
+   -A asg-fd7a -m iprange --dst-range 1.2.3.4-1.2.3.4 -j ACCEPT
    ```
 
 Copy the iptables rule that you found on the Diego Cell that looks like the
 line above. It will be necessary to reference it soon.
 
-🤔 **Decipher the iptables rule for the public_networks ASG**
+🤔 **Decipher the iptables rule for your ASG**
+
 When you run `iptables -S` the iptables rules are displayed in the format that
 they were created in. For example, if you prepended `iptables` to the line
 above and ran (DON'T! this is hypothetical) `iptables -A
-netout--772fbbd5-862a-4b3d-7 -m iprange ...` it would add that iptables rule.
+asg-fd7a -m iprange ...` it would add that iptables rule.
 
 With that in mind, use `iptables --help` to define what the following flags
 mean and record them somewhere to reference later...
@@ -125,7 +118,7 @@ not available to them) targets.
 1. ssh onto your app and try to curl 172.20.0.3. Did it succeed or fail? Did it match your expectations?
 
 ## Expected Result
-You should be able to find the iptables rules for the public_networks and be
+You should be able to find the iptables rules for your ASG and be
 able to follow the flow to either ACCEPT or DROP.
 
 Iptables are hard! Hopefully they have been demystified a little bit.  Spend
