@@ -71,7 +71,7 @@ to store these values in a doc outside of tracker.
 * [iptables man page](http://ipset.netfilter.org/iptables.man.html)
 
 **Route Integrity**
-* [Route Integrity/Misrouting Docs](https://docs.cloudfoundry.org/concepts/http-routing.html#-preventing-misrouting)
+* [Route Integrity/Misrouting Docs](https://docs.cloudfoundry.org/concepts/http-routing.html#consistency)
 
 **Envoy**
 * [What is Envoy?](https://www.envoyproxy.io/docs/envoy/latest/intro/what_is_envoy)
