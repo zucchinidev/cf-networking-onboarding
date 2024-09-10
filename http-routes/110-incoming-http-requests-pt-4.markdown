@@ -120,5 +120,5 @@ We made it! We finally made it to the end! Everything is set up and someone can 
 Look at the Envoy's 8080 listener and related cluster and see how network traffic is sent to the app.
 
 ## Resources
-* [Route Integrity/Misrouting Docs](https://docs.cloudfoundry.org/concepts/http-routing.html#-preventing-misrouting)
+* [Route Integrity/Misrouting Docs](https://docs.cloudfoundry.org/concepts/http-routing.html#consistency)
 * [What is Envoy?](https://www.envoyproxy.io/docs/envoy/latest/intro/what_is_envoy)
