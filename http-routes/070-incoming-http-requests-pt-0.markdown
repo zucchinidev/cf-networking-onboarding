@@ -8,7 +8,7 @@ sidebar:
 ---
 
 ## What
-In the previous stories you learned what happens when an app dev pushes a new app with a route. In this story you will learn an at a high level what happens when an end user connects to an app using the route.
+In the previous stories you learned what happens when an app dev pushes a new app with a route. In this story, you will learn at a high level what happens when an end user connects to an app using the route.
 
 Each step marked with a ✨ will be explained in more detail in a story in this track.
 
