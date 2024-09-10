@@ -13,7 +13,7 @@ In this module you will learn:
 
 * How to create HTTP routes.
 * How map HTTP routes to multiple apps.
-* How HTTP routes are propogated through the Cloud Controller, Diego BBS, Route
+* How HTTP routes are propagated through the Cloud Controller, Diego BBS, Route
   Emitter, NATS, and Gorouter.
 * How incoming HTTP requests make it from the load balancer to gorouter to the
   app and what iptables rules are hit along the way.
