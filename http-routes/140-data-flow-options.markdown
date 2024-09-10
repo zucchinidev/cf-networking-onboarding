@@ -28,7 +28,7 @@ First we need to understand what L4 (TCP) LBs and L7 (HTTPS) LBs _are_.
 1. 📚 Read [this medium article about "TCP vs HTTP(S) Load
    Balancing."](https://medium.com/martinomburajr/distributed-computing-tcp-vs-http-s-load-balancing-7b3e9efc6167)
 1. 📚 Read [these cloudfoundry docs on TLS Termination Options for HTTP
-   Routing](https://docs.pivotal.io/application-service/2-10/adminguide/securing-traffic.html).
+   Routing](https://docs.cloudfoundry.org/adminguide/securing-traffic.html).
 
 ## ❓ Questions
 Look at the following diagrams and think about the following questions for
