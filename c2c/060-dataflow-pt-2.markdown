@@ -97,9 +97,9 @@ traffic exits the app container.
 
 ## Extra Credit
 Look at the
-[code](https://github.com/cloudfoundry/silk/blob/master/cni/lib/pair_creator.go)
+[code](https://github.com/cloudfoundry/silk-release/blob/develop/src/code.cloudfoundry.org/silk/cni/lib/pair_creator.go)
 and
-[tests](https://github.com/cloudfoundry/silk/blob/master/cni/lib/pair_creator_test.go)
+[tests](https://github.com/cloudfoundry/silk-release/blob/develop/src/code.cloudfoundry.org/silk/cni/lib/pair_creator_test.go)
 in silk where veth pairs are set up.
 
 ## Extra Extra Credit
