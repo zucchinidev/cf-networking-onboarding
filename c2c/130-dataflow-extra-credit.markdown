@@ -40,7 +40,7 @@ container.
    tcpdump -n src DIEGO_CELL_1_IP -v
 
    # all traffic originating from DIEGO_CELL_1_IP that is destined for DIEGO_CELL_IP_2 (A more focused capture)
-   tcpdump -n src DIEGO_CELL_1_IP and DIEGO_CELL_2_IP -v
+   tcpdump -n src DIEGO_CELL_1_IP and dst DIEGO_CELL_2_IP -v
    ```
 
 ## ❓ Questions
