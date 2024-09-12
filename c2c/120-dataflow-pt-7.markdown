@@ -86,7 +86,7 @@ at the ARP table.
    `silk-controller.properties.database.password`. You might need to look up
    these values in credhub. This will differ based on your deployment.
 1. Bosh ssh onto the database VM and become root.
-1. Login to your database. For a percona-xxx deployment, it looks like this
+1. Login to your database. For a percona-xtradb-cluster-x.x deployment, it looks like this
    ```bash
    /var/vcap/packages/percona-xtradb-cluster-5.7/bin/mysql -u network_connectivity -p -h sql-db.service.cf.internal -D DATABASE_NAME
    ```
